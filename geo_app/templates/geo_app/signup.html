@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Signup Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- jQuery Validation Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+        }
+
+        .card {
+            border: none;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            background: linear-gradient(to right, #ffffff, #f2f2f2);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #0056b3;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            function getCurrentYear() {
+                return new Date().getFullYear();
+            }
+
+            $("#signupForm").validate({
+                rules: {
+                    full_name: {
+                        required: true
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    mobile_number: {
+                        required: true,
+                        digits: true,
+                        minlength: 10,
+                        maxlength: 10
+                    },
+                    date_of_birth: {
+                        required: true
+                    },
+                    graduation_year: {
+                        required: true,
+                        digits: true,
+                        range: [getCurrentYear() - 5, getCurrentYear() + 2]
+                    }
+                },
+                messages: {
+                    full_name: {
+                        required: "Please enter your full name"
+                    },
+                    email: {
+                        required: "Please enter your email address",
+                        email: "Please enter a valid email address"
+                    },
+                    mobile_number: {
+                        required: "Please enter your mobile number",
+                        digits: "Please enter only digits",
+                        minlength: "Mobile number must be at least 10 digits",
+                        maxlength: "Mobile number cannot exceed 10 digits"
+                    },
+                    date_of_birth: {
+                        required: "Please enter your date of birth"
+                    },
+                    graduation_year: {
+                        required: "Please enter your graduation year",
+                        digits: "Please enter only digits",
+                        range: "Graduation year must be within the past 5 years to the future 2 years"
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="card mx-auto">
+            <div class="card-header">
+                <h2 class="mb-0">Signup</h2>
+            </div>
+            <div class="card-body">
+
+                <form id="signupForm" method="post" action="{% url 'signup' %}">
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+                        <label for="first_name" class="form-label">First Name</label>
+                        <input type="text" id="first_name" name="first_name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">Last Name</label>
+                        <input type="text" id="last_name" name="last_name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email ID</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone_number" class="form-label">Phone Number</label>
+                        <input type="text" id="phone_number" name="phone_number" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="date_of_birth" class="form-label">Date of Birth</label>
+                        <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" required>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Signup</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+version: '3.11'
+
+services:
+  database:
+    image: postgres:14.3
+   
+    environment: 
+      - POSTGRES_PASSWORD=geospatial
+
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data/
+
+  web:
+    build: .
+    command: python3 /website/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/website
+    ports:
+      - 80:8000
+    # environment:
+    #   - POSGRES_DB=postgres
+    #   - POSTGRES_USER=postgres
+    #   - POSTGRES_PASSWORD=postgres
+    depends_on:
+      - database
+
+volumes:
+  postgres_data:
