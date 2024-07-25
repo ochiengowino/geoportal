@@ -14,7 +14,9 @@ from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+GDAL_LIBRARY_PATH = r'C:\xampp\htdocs\geoportal\portal_env\Lib\site-packages\osgeo\gdal304.dll'
+GEOS_LIBRARY_PATH = r'C:\xampp\htdocs\geoportal\portal_env\Lib\site-packages\osgeo\geos_c.dll'
+PROJ_LIB  = r'C:\xampp\htdocs\geoportal\portal_env\Lib\site-packages\osgeo\data\proj\proj.db'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -43,7 +45,8 @@ INSTALLED_APPS = [
     'login_system',
     'geo_app',
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
+    'leaflet'
 ]
 
 MIDDLEWARE = [
@@ -91,8 +94,8 @@ DATABASES = {
     }
 }
 
-GDAL_LIBRARY_PATH = r'C:\xampp\htdocs\geoportal\portal_env\Lib\site-packages\osgeo\gdal304.dll'
-GEOS_LIBRARY_PATH = r'C:\xampp\htdocs\geoportal\portal_env\Lib\site-packages\osgeo\geos_c.dll'
+# GDAL_LIBRARY_PATH = r'C:\xampp\htdocs\geoportal\portal_env\Lib\site-packages\osgeo\gdal304.dll'
+# GEOS_LIBRARY_PATH = r'C:\xampp\htdocs\geoportal\portal_env\Lib\site-packages\osgeo\geos_c.dll'
 
 # DATABASES = {
 #     'default': {

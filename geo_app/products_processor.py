@@ -1,7 +1,7 @@
 
 from . import raster_products
 
-from . models import RasterDatasets
+# from .models import RasterDatasets
 
 def get_list(data, colum):
     list_data = list(data.values_list(colum, flat=True))
